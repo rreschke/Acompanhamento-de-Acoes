@@ -1,10 +1,9 @@
-import sqlite3
 from src.source.requests.requests import Requests
 import json
-from src.repository.SQLite.repositorySQL import *
+from src.repository.SQLite.repository import *
 
 try:
-    sqliteConnection, cursor = RepositorySQL.connect("repository-test.db")
+    sqliteConnection, cursor = Repository.connect("repository-test.db")
     print("Database Successfully Connected to SQLite")
 
     con = Requests().get_json_api_b3(path="empresa")
@@ -18,15 +17,23 @@ try:
         nm_segmento = empresa["segmento"]
         nr_cnpj = empresa["vl_cnpj"]
 
+
+
         nm_ticker = nm_tickers.split(", ")
         for ticker in nm_ticker:
             if ticker != "":
-                query = f"insert into \"atv.cadastro_ativo\" " \
-                        "(nm_ticker, nm_empresa, nm_setor, nm_subsetor, nm_segmento, nr_cnpj) " \
-                        "values " \
-                        f"(\"{ticker}\", \"{nm_empresa}\", \"{nm_setor}\", \"{nm_subsetor}\", \"{nm_segmento}\", {nr_cnpj});"
-                cursor.execute(query)
+                query = Repository.build_query(table="atv.cadastro_ativo",
+                                               query_type=eQueryType.INS,
+                                               columns=["nm_ticker", "nm_empresa", "nm_setor",
+                                                        "nm_subsetor", "nm_segmento", "nr_cnpj"],
+                                               values_list=[ticker, nm_empresa, nm_setor, nm_subsetor, nm_segmento,
+                                                            nr_cnpj],
+                                               column_types=[eColTypeSQL.TXT, eColTypeSQL.TXT,
+                                                             eColTypeSQL.TXT, eColTypeSQL.TXT,
+                                                             eColTypeSQL.TXT, eColTypeSQL.TXT])
+
                 print("Query: ", query)
+                cursor.execute(query)
 
     sqliteConnection.commit()
     cursor.close()
