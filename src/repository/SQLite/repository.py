@@ -1,9 +1,10 @@
 import sqlite3
 from src.models.enum.eColTypeSQL import eColTypeSQL
 from src.models.enum.eQueryType import eQueryType
+from .interface import iSQLite
 
 
-class Repository:
+class Repository(iSQLite):
     sqliteConnection: sqlite3.Connection
     cursor: sqlite3.Cursor
 
