@@ -2,5 +2,6 @@
   "url-papeis-statusinvest": "https://statusinvest.com.br/acoes/",
   "url-papeis-fundamentus": "https://www.fundamentus.com.br/detalhes.php?papel=",
   "pattern-statusinvest": "https://statusinvest.com.br/acoes/{ticker}",
-  "pattern-fundamentus": "https://www.fundamentus.com.br/detalhes.php?papel={TICKER}"
+  "pattern-fundamentus": "https://www.fundamentus.com.br/detalhes.php?papel={TICKER}",
+  "api-b3": "https://api-cotacao-b3.labdo.it/api/"
 }
