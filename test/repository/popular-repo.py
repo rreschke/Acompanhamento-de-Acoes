@@ -1,4 +1,4 @@
-from src.source.requests.requests import Requests
+from src.source.requests.apib3.requests import *
 import json
 from src.repository.SQLite.repository import *
 
@@ -6,7 +6,7 @@ try:
     sqliteConnection, cursor = Repository.connect("repository-test.db")
     print("Database Successfully Connected to SQLite")
 
-    con = Requests().get_json_api_b3(path="empresa")
+    con = Requests().get_json(path="empresa")
     json = json.loads(con)
 
     for empresa in json:
