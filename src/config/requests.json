@@ -1,0 +1,6 @@
+{
+  "url-papeis-statusinvest": "https://statusinvest.com.br/acoes/",
+  "url-papeis-fundamentus": "https://www.fundamentus.com.br/detalhes.php?papel=",
+  "pattern-statusinvest": "https://statusinvest.com.br/acoes/{ticker}",
+  "pattern-fundamentus": "https://www.fundamentus.com.br/detalhes.php?papel={TICKER}"
+}
