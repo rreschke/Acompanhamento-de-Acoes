@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from src.models.enum.eColTypeSQL import eColTypeSQL
 from src.models.enum.eQueryType import eQueryType
 
 class iSQLite(ABC):
@@ -13,7 +12,6 @@ class iSQLite(ABC):
         pass
 
     @abstractmethod
-    def build_query(table: str, query_type: eQueryType, columns: list[str], values_list: list,
-                    column_types: list[eColTypeSQL] = [], filter: str = ""):
+    def build_query(table: str, query_type: eQueryType, columns: list[str], values_list: list, filter: str = ""):
         """ Cria um query """
         pass

@@ -27,10 +27,7 @@ try:
                                                columns=["nm_ticker", "nm_empresa", "nm_setor",
                                                         "nm_subsetor", "nm_segmento", "nr_cnpj"],
                                                values_list=[ticker, nm_empresa, nm_setor, nm_subsetor, nm_segmento,
-                                                            nr_cnpj],
-                                               column_types=[eColTypeSQL.TXT, eColTypeSQL.TXT,
-                                                             eColTypeSQL.TXT, eColTypeSQL.TXT,
-                                                             eColTypeSQL.TXT, eColTypeSQL.TXT])
+                                                            nr_cnpj])
 
                 print("Query: ", query)
                 cursor.execute(query)
