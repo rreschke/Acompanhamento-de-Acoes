@@ -7,8 +7,10 @@ class Log:
 
     @staticmethod
     def log_date_time(msg: str):
-        Log.log += f"{datetime.now()} LOG: {msg}"
+        Log.log += f"{datetime.now()} LOG: {msg}\n"
 
-    def write_log(self):
-        with open(path.join(self._root, f"""src/logs/{datetime.now().strftime("%Y%m%d[%H:%M:%S")}.txt"""), "w") as f:
-            f.write(self.log)
+    @staticmethod
+    def write_log():
+        p = path.join(Log._root, f"../logs/{datetime.now().strftime('%H %M  %d%m%Y')}.txt")
+        with open(p, "x") as f:
+            f.write(Log.log)

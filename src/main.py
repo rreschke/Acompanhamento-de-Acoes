@@ -1,10 +1,11 @@
 from src.start import Start
 from src.menu import Menu
+from src.finish import Finish
 
 def main():
-    s = Start()
-    m = Menu()()
-    #f = Finish(s)
+    Start()
+    Menu()
+    Finish()
 
 if __name__ == "__main__":
     main()

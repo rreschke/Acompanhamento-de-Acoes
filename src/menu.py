@@ -1,7 +1,7 @@
 class Menu:
     op: int = 999999
 
-    def __call__(self):
+    def __init__(self):
         while self.op != 0:
             self.get_option()
 

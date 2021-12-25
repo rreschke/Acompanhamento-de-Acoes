@@ -1,0 +1,1 @@
+2021-12-25 16:30:49.364857 LOG: Conectado ao banco SQLite.2021-12-25 16:30:52.036588 LOG: Encerrando cursor SQLite.2021-12-25 16:30:52.036588 LOG: Fechando conexão ao banco SQLite.

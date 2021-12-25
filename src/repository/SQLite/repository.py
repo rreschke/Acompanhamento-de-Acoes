@@ -16,7 +16,9 @@ class Repository(iSQLite):
     @staticmethod
     def close_connection():
         Repository.cursor.close()
+        Log.log_date_time("Encerrando cursor SQLite.")
         Repository.sqliteConnection.close()
+        Log.log_date_time("Fechando conexão ao banco SQLite.")
 
     @staticmethod
     def build_query(table: str, query_type: eQueryType, columns: list[str], values_list: list, filter: str = ""):
