@@ -1,5 +1,7 @@
 from os import path
 import json
+
+from src.menu import Menu
 from src.repository.interface import IRepositoryG
 from src.repository.SQLite.repository import Repository as SQLite
 from src.source.requests.interface import IRequestG
@@ -20,3 +22,5 @@ class Start:
         # conexao com o banco
         if repo == "SQLite":
             self._repo = SQLite(path.join(path.dirname(path.abspath(__file__)), "repository/SQLite/repository.db"))
+
+        Menu()
