@@ -1,14 +1,15 @@
 from abc import ABC, abstractmethod
 from .enum import eQueryType
+from ..interface import IRepositoryG
 
-class iSQLite(ABC):
+
+class iSQLite(IRepositoryG, ABC):
     """
         Interface para SQLite
     """
 
     @abstractmethod
-    def connect(db: str):
-        """ Cria conexão com o db """
+    def close_connection(self):
         pass
 
     @abstractmethod

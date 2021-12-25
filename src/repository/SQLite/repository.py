@@ -1,17 +1,22 @@
 import sqlite3
 from .enum import eQueryType
 from .interface import iSQLite
+from ...util.log import Log
 
 
 class Repository(iSQLite):
     sqliteConnection: sqlite3.Connection
     cursor: sqlite3.Cursor
 
+    def __init__(self, db: str):
+        Repository.sqliteConnection = sqlite3.connect(db)
+        Repository.cursor = Repository.sqliteConnection.cursor()
+        Log.log_date_time("Conectado ao banco SQLite.")
+
     @staticmethod
-    def connect(db: str):
-        sqlite_connection = sqlite3.connect(db)
-        cursor = sqlite_connection.cursor()
-        return sqlite_connection, cursor
+    def close_connection():
+        Repository.cursor.close()
+        Repository.sqliteConnection.close()
 
     @staticmethod
     def build_query(table: str, query_type: eQueryType, columns: list[str], values_list: list, filter: str = ""):
