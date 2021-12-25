@@ -1,5 +1,5 @@
 import sqlite3
-from src.models.enum.eQueryType import eQueryType
+from .enum import eQueryType
 from .interface import iSQLite
 
 

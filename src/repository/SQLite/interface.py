@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.models.enum.eQueryType import eQueryType
+from .enum import eQueryType
 
 class iSQLite(ABC):
     """

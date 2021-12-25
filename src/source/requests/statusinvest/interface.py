@@ -1,12 +1,9 @@
 from abc import ABC, abstractmethod
+from ..interface import IRequestG
 
 
-class IRequest(ABC):
+class IRequest(ABC, IRequestG):
     """ Interface de Request """
-
-    @abstractmethod
-    def get_content_by_url(self, url: str):
-        pass
 
     @abstractmethod
     def get_html_papel_statusinvest(self, ticker: str):
