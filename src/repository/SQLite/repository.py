@@ -29,7 +29,22 @@ class Repository(iSQLite):
             for i in range(len(values_list)):
                 if type(values_list[i]) == str:
                     values_list[i] = f"\"{values_list[i]}\""
-            return f"""{query_type.value} "{table}" ({", ".join(columns)}) values ({", ".join(values_list)});"""
+            return f"""{query_type.value} "{table.replace(";", "").replace("-", "")}" 
+                    ({", ".join(columns).replace(";", "").replace("-", "")}) values 
+                    ({", ".join(values_list).replace(";", "").replace("-", "")});"""
+
+        elif query_type == eQueryType.UPD:
+            col_val = []
+            for i in range(len(columns)):
+                col_val.append(f"""{columns[i]} = {values_list[i]}""")
+            return f"""{query_type.value} {table.replace(";", "").replace("-", "")} SET 
+                        {", ".join(col_val).replace(";", "").replace("-", "")} 
+                        {filter.replace(";", "").replace("-", "")};"""
+
+        elif query_type == eQueryType.DEL:
+            return f"""{query_type.value} FROM {table.replace(";", "").replace("-", "")} 
+                        {filter.replace(";", "").replace("-", "")}"""
+
 
 
 

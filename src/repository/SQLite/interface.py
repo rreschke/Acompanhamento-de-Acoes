@@ -16,3 +16,8 @@ class iSQLite(IRepositoryG, ABC):
     def build_query(table: str, query_type: eQueryType, columns: list[str], values_list: list, filter: str = ""):
         """ Cria um query """
         pass
+
+    @abstractmethod
+    def exec_query(object: object):
+        """ Executa um query no banco """
+        pass
