@@ -33,10 +33,6 @@ Repository.exec_query(query_ins)
 Repository.exec_query(query_select)
 Repository.exec_query(query_upd)
 Repository.exec_query(query_del)
-Log.write_log()
-
-
-
-
 
 Repository.close_connection()
+Log.write_log()
