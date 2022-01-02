@@ -45,6 +45,9 @@ class Repository(iSQLite):
             return f"""{query_type.value} FROM {table.replace(";", "").replace("-", "")} 
                         {filter.replace(";", "").replace("-", "")}"""
 
+        else:
+            return "Tipo de Query Não Implementado."
+
 
 
 
