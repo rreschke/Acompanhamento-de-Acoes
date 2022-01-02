@@ -21,28 +21,31 @@ class Repository(iSQLite):
         Log.log_date_time("Fechando conexão ao banco SQLite.")
 
     @staticmethod
-    def build_query(table: str, query_type: eQueryType, columns: list[str], values_list: list, filter: str = ""):
-        if query_type == eQueryType.SEL:
+    def build_query(table: str, query_type: eQueryType, columns: list[str] = [], values_list: list = [], filter: str = ""):
+        if query_type.value == "SELECT":
             return f"""{query_type.value} {", ".join(columns)} FROM "{table}" {filter};"""
 
-        elif query_type == eQueryType.INS:
+        elif query_type.value == "INSERT":
             for i in range(len(values_list)):
                 if type(values_list[i]) == str:
                     values_list[i] = f"\"{values_list[i]}\""
-            return f"""{query_type.value} "{table.replace(";", "").replace("-", "")}" 
+            return f"""{query_type.value} INTO "{table.replace(";", "").replace("-", "")}" 
                     ({", ".join(columns).replace(";", "").replace("-", "")}) values 
                     ({", ".join(values_list).replace(";", "").replace("-", "")});"""
 
-        elif query_type == eQueryType.UPD:
+        elif query_type.value == "UPDATE":
             col_val = []
+            for i in range(len(values_list)):
+                if type(values_list[i]) == str:
+                    values_list[i] = f"\"{values_list[i]}\""
             for i in range(len(columns)):
                 col_val.append(f"""{columns[i]} = {values_list[i]}""")
-            return f"""{query_type.value} {table.replace(";", "").replace("-", "")} SET 
+            return f"""{query_type.value} "{table.replace(";", "").replace("-", "")}" SET 
                         {", ".join(col_val).replace(";", "").replace("-", "")} 
                         {filter.replace(";", "").replace("-", "")};"""
 
-        elif query_type == eQueryType.DEL:
-            return f"""{query_type.value} FROM {table.replace(";", "").replace("-", "")} 
+        elif query_type.value == "DELETE":
+            return f"""{query_type.value} FROM "{table.replace(";", "").replace("-", "")}"
                         {filter.replace(";", "").replace("-", "")}"""
 
         else:
@@ -51,6 +54,7 @@ class Repository(iSQLite):
     def exec_query(query: str):
         try:
             Repository.cursor.execute(query)
+            Log.log_date_time(f"Executando query \"{query}\"")
         except():
             Log.log_date_time(f"Erro ao executar query \"{query}\"")
             Repository.sqliteConnection.rollback()

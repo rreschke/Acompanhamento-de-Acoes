@@ -2,9 +2,9 @@ import enum
 
 
 class eQueryType(enum.Enum):
-    INS = "INSERT INTO"
+    INS = "INSERT"
     SEL = "SELECT"
-    UPD = "UPDATE TABLE"
+    UPD = "UPDATE"
     DEL = "DELETE"
     ALT_TBL = "ALTER TABLE"
     ALT_COL = "ALTER COLUMN"
