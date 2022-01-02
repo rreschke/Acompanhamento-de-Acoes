@@ -18,6 +18,6 @@ class iSQLite(IRepositoryG, ABC):
         pass
 
     @abstractmethod
-    def exec_query(object: object):
+    def exec_query(query: str):
         """ Executa um query no banco """
         pass

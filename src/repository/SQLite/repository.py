@@ -48,6 +48,15 @@ class Repository(iSQLite):
         else:
             return "Tipo de Query Não Implementado."
 
+    def exec_query(query: str):
+        try:
+            Repository.cursor.execute(query)
+        except():
+            Log.log_date_time(f"Erro ao executar query \"{query}\"")
+            Repository.sqliteConnection.rollback()
+        finally:
+            Repository.sqliteConnection.commit()
+
 
 
 
